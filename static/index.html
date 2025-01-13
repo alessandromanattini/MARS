@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Autour+One&family=Bruno+Ace&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>    
+    <!-- Navigation Menu -->
+    <div class="nav-container">
+        <img id="menu" src="../Graphic/Pop_up_function.png" alt="Menu">
+        <button id="menuButton" class="navButton"></button>
+        <button id="homeButton" class="popUpButton"></button>
+        <button id="dataButton" class="popUpButton"></button>
+        <button id="aboutButton" class="popUpButton"></button>
+    </div>
+
+    <!-- Screen 1 -->
+    <div id="screen1" class="screen">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+    </div>
+
+    <!-- Screen 2 -->
+    <div id="screen2" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <form id="userForm" style="color: white;">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome">
+            <p> </p>
+            <br id="userInfo">
+            <label for="cognome" id="surnameLabel">Cognome</label>
+            <input type="text" id="cognome" name="cognome">
+            <p> </p>
+            <br id="userInfo">
+            <label for="id">ID</label>
+            <input type="number" id="id" name="id">
+            <p> </p>
+            <br id="userInfo">
+            <img id="savingButton" src="../Graphic/saveData.png" class="gameMode"></button>
+        </form>
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back" style="display : block">
+        </button>
+    </div>
+
+    <!-- Screen 3 -->
+    <div id="screen3" class="screen" style="display: none;">
+        <!-- "Back" button -->
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+        <!-- Title -->
+        <img id="gameChoice" src="../Graphic/sceltaGioco.png">
+
+        <!-- Buttons for test selection -->
+        <div class="test-options-vertical">
+            <img id="nonParoleButton" src="../Graphic/nonParole.png" class="gameMode"></button>
+            <img id="voiceRecognitionButton" src="../Graphic/Riconoscimento.png" class="gameMode"></button>
+        </div>
+    </div>
+
+    <!-- Screen 4 -->
+    <div id="screen4" class="screen" style="display: none;">
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <button class="next-button" id="intro1">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 5 -->
+    <div id="screen5" class="screen" style="display: none;">
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <button class="next-button" id="intro2">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 6 -->
+    <div id="screen6" class="screen" style="display: none;">
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <img id="startGameImage" src="../Graphic/Tocca_Pianeta.png" alt="Start Game">
+        <map name="planetMap">
+            <!-- Define clickable areas on the image -->
+            <area shape="circle" coords="290,181,65" alt="PlanetOrange" href="#" data-planet="1">
+            <area shape="circle" coords="125,400,110" alt="PlanetPurple" href="#" data-planet="2">
+            <area shape="circle" coords="558,240,105" alt="PlanetWhite" href="#" data-planet="3">
+            <area shape="circle" coords="411,590,155" alt="PlanetBlue" href="#" data-planet="4">
+            <area shape="circle" coords="1131,240,120" alt="PlanetRing" href="#" data-planet="5">
+            <area shape="circle" coords="876,450,90" alt="PlanetRed" href="#" data-planet="6">
+            <area shape="circle" coords="1386,450,118" alt="PlanetHeart" href="#" data-planet="7">
+            <area shape="circle" coords="1098,590,95" alt="PlanetGreen" href="#" data-planet="8">
+        </map>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 7 -->
+    <div id="screen7" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button> -->
+        <button id="firstPos"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 8 -->
+    <div id="screen8" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="secondPos"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+
+    <!-- Screen 9 -->
+    <div id="screen9" class="screen" style="display: none;">
+
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="NironPlanet"></button>
+        <img id="NironBadge" src="../Graphic/nironPlanetBadge.png" alt="Niron">
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+
+    <!-- Screen 10 -->
+    <div id="screen10" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="startNironGame"></button>
+        <img id="skipBtn" class="skipButtons" src="../Graphic/SingleComponent/skipCircle.png" alt="Next">
+        <img id="touchNiron" src="../Graphic/CTA.png" alt="Touch Niron">
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+
+    <!-- Screen 11 -->
+    <!--<<div id="screen11" class="screen" style="display: none;">
+        button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <button id="blueCardTest" class="cardsButton"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+    
+
+    <!-- Screen 12 -->
+    <div id="screen11" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button class="backHomeButton" id="home"></button>
+        <button id="retryT" class="retry-button audioButtons"></button>
+        <img id="playTutorial" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <img id="recTutorial" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendTutorial" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <img id="skipBtnTutorial" class="skipButtons" src="../Graphic/SingleComponent/skipCircle.png" alt="Next">
+    </div>
+
+    <!-- Screen 13 -->
+    <div id="screen12" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button class="backHomeButton" id="home"></button>
+        <button id="CardGameEx" type="button"></button>
+    </div>
+
+    <!-- Screen 15 -->
+    <div id="screen13" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <img id="play" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use classes for common buttons -->
+        <img id="startRecognition" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen14" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button class="backHomeButton" id="home"></button>
+        <button id="CardGame1" class="cardsButton" type="button"></button>
+    </div>
+
+    <!-- Screen 18 -->
+    <div id="screen15" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask1" disabled></button> 
+        <img id="play1" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition1" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult1" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry1" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+
+    </div>
+
+    <div id="screen16" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame2" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    
+    <!-- Screen 19 -->
+    <div id="screen17" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask2" disabled></button> 
+        <img id="play2" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition2" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult2" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry2" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen18" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame3" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 19 -->
+    <div id="screen19" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask3" disabled></button> 
+        <img id="play3" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition3" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult3" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry3" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+
+    </div>
+    
+
+    <div id="screen20" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame4" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 19 -->
+    <div id="screen21" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask4" disabled></button> 
+        <img id="play4" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition4" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult4" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry4" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+
+    </div>
+    
+    <!--<div id="screen28" class="screen" style="display: none;">
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>--> <!-- screen28 -->
+
+
+    <div id="screen22" class="screen" style="display: none;">
+       <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame5" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 19 -->
+    <div id="screen23" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask5" disabled></button> 
+        <img id="play5" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition5" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult5" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry5" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+
+    </div>
+    
+    <!--<div id="screen31" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+
+    <div id="screen24" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame6" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen25" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask6" disabled></button> 
+        <img id="play6" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition6" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult6" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry6" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+
+    </div>
+    
+    <!--<div id="screen34" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+    <div id="screen26" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame7" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen27" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask7" disabled></button> 
+        <img id="play7" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition7" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult7" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry7" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <!--<div id="screen37" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+    <div id="screen28" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame8" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen29" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask8" disabled></button> 
+        <img id="play8" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition8" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult8" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry8" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <!--<div id="screen40" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+    <div id="screen30" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame9" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen31" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask9" disabled></button> 
+        <img id="play9" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition9" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult9" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry9" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <!--<div id="screen43" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+    <div id="screen32" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame10" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen33" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask10" disabled></button> 
+        <img id="play10" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition10" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult10" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry10" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <!--<div id="screen46" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+    <div id="screen34" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame11" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen35" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask11" disabled></button> 
+        <img id="play11" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition11" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult11" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry11" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <!--
+    <div id="screen49" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    -->
+
+    <div id="screen36" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame12" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen37" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask12" disabled></button> 
+        <img id="play12" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition12" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult12" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry12" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <!--<div id="screen52" class="screen" style="display: none;">
+        <button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>
+        <button class="next-button">
+            <img src="../Graphic/nextButton.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>-->
+
+    <div id="screen38" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame13" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen39" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="mask13" disabled></button> 
+        <img id="play13" class="play-button" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="startRecognition13" class="recognition-button" src="../Graphic/SingleComponent/startRecBlue.png" alt="Start Recognition">
+        <img id="sendResult13" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retry13" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="screen40" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CardGame14" class="cardsButton" type="button"> </button>
+        <button class="backHomeButton">
+            <img src="../Graphic/fineRec.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    
+    
+    <!--
+        <div id="screen55" class="screen" style="display: none;">
+            <button class="next-button">
+                <img src="../Graphic/nextButton.png" alt="Next">
+            </button>
+            <button class="backHomeButton" id="home"></button>
+        </div>
+    -->
+
+
+    <!--FINE GIOCO RICONOSCIMENTO-->
+
+    <div id="np1" class="screen" style="display: none;">
+        <button class="next-button" id="introNP1">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np2" class="screen" style="display: none;">
+        <button id = "nascondino" class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np3" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button> -->
+        <!--<button id = "nascondino" class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>-->
+        <button id="thirdPos"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <!-- Screen 8 -->
+    <div id="np4" class="screen" style="display: none;">
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="fourthPos"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+
+    <!-- Screen 9 -->
+    <div id="np5" class="screen" style="display: none;">
+
+        <!--<button class="back-button">
+            <img src="../Graphic/arrowBack.png" alt="Back">
+        </button>-->
+        <button id="CrashPlanet"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np6" class="screen" style="display: none;">
+        <video id="gifMars" width="100%" height="100%" style="position:absolute;"autoplay>
+            <source src="../Graphic/sillabe/MarsCrash.mp4" type="video/mp4">
+        </video>
+        <button class="next-button" id="endGif">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>     
+    </div>
+
+    <div id="np7" class="screen" style="display: none;">
+        <button class="next-button" id="startNPGame">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+    </div>
+
+    <div id="np8" class="screen" style="display: none;">
+        <button class="next-button" id="NPTutorial">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+    </div>
+
+    
+    <div id="np9" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <button id="maskNP0" disabled></button> 
+        <img id="playNP0" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP0" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP0" class="retry-button audioButtons"></button>
+    </div>
+
+
+    <div id="np10" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <button id="maskNP1" disabled></button> 
+        <img id="playNP1" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP1" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP1" class="retry-button audioButtons"></button>
+    </div>
+
+    <div id="np11" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <div id="np12" class="screen" style="display: none;">
+        <button id="maskNP2" disabled></button> 
+        <img id="playNP2" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP2" class="send-result-button" style="display : none" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP2" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np13" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np14" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <button id="maskNP3" disabled></button> 
+        <img id="playNP3" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP3" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP3" class="retry-button audioButtons"></button>
+    </div>
+
+    <div id="np15" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+    
+    <div id="np16" class="screen" style="display: none;">
+        <button id="maskNP4" disabled></button> 
+        <img id="playNP4" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP4" class="send-result-button" style="display : none" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP4" class="retry-button audioButtons"></button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np17" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np18" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <button id="maskNP5" disabled></button> 
+        <img id="playNP5" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP5" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP5" class="retry-button audioButtons"></button>
+    </div>
+
+    <div id="np19" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np20" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <button id="maskNP6" disabled></button> 
+        <img id="playNP6" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP6" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP6" class="retry-button audioButtons"></button>
+    </div>
+
+    <div id="np21" class="screen" style="display: none;">
+        <button class="next-button" id="spell">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np22" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/nextButtonNP.png" alt="Next">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <div id="np23" class="screen" style="display: none;">
+        <button class="backHomeButton" id="home"></button>
+        <button id="maskNP7" disabled></button> 
+        <img id="playNP7" class="play-button np" src="../Graphic/SingleComponent/play.png">
+        <!-- Use the same classes for buttons -->
+        <img id="sendResultNP7" class="send-result-button" src="../Graphic/SingleComponent/check.png" alt="Send Result">
+        <button id="retryNP7" class="retry-button audioButtons"></button>
+    </div>
+
+    <div id="np24" class="screen" style="display: none;">
+        <button class="next-button">
+            <img src="../Graphic/fineNP.png" alt="Next" id="NPend">
+        </button>
+        <button class="backHomeButton" id="home"></button>
+    </div>
+
+    <script type="module" src="main.js"></script>
+    <!--<script type="module" src="gameLogic.js"></script>
+    <script type="module" src="events.js"></script>
+    <script type="module" src="data.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</body>
+</html>
+

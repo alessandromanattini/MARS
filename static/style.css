@@ -1,0 +1,601 @@
+/* Global settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('../Graphic/Homepage_12.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-image 0.5s ease;
+}
+
+.screen {
+    display: none; /* Hide all screens initially */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+/* Classe per nascondere il cursore */
+.hide-cursor {
+    cursor: wait;
+}
+
+/* Show the first screen */
+.screen#screen1 {
+    display: flex;
+}
+
+#home{
+    position: absolute;
+    display : block;
+    top: 1%;
+    left: 5.25%;
+    width: 6%;
+    height: 8%;
+    /*border : 2px solid red;*/
+    cursor: pointer;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#userForm {
+    display: flex;
+    flex-direction: column; /* Disporre gli elementi in colonna */
+    align-items: flex-start; /* Allineare a sinistra */
+    align-items: center;
+    font-family: "Autour One", serif;;
+}
+
+#surnameLabel{
+    right : 80%;
+}
+
+#savingButton{
+    color : white;
+    margin-top : 10px;
+    width : 10%;
+    height : auto;
+    left : 45%;
+    top : 60%;
+}
+
+/* Navigation Buttons */
+.nav-container {
+    position: fixed;
+    top: 1.0%;
+    right: 0.8%;
+    width: 20%;
+    height: 40%;
+    pointer-events: auto;
+    /*border: 2px solid red;*/
+    z-index: 1000;
+}
+
+#menu { 
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 1%;
+    right: 50%;
+    z-index: 1;
+}
+
+.navButton {
+    position: absolute;
+    height: 15%;
+    width: 20%;
+    top: 3%;
+    right: 39%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.popUpButton {
+    position: absolute;
+    height: 17%;
+    width: 55%;
+    right: 23%;
+    z-index: 3;
+    cursor: pointer;
+    display: none;
+}
+
+#homeButton {
+    top: 22%;
+}
+
+#dataButton {
+    top: 44%;
+}
+
+#aboutButton {
+    top: 65.5%;
+}
+
+/* Next and Back Buttons */
+.next-button {
+    position: absolute;
+    bottom: 5%;
+    right: 2.5%;
+    z-index: 2;
+}
+
+.backHomeButton {
+    position: absolute;
+    bottom: 5%;
+    right: 2.5%;
+    z-index: 2;
+}
+
+.backHomeButton img {
+    width: 70%;
+    height: auto;
+}
+
+.next-button img {
+    width: 70%;
+    height: auto;
+}
+.back-button {
+    position: absolute;
+    top: 2.5%;
+    left: 1.5%;
+    z-index: 2;
+}
+
+.back-button img {
+    width: 70%;
+    height: auto;
+}
+.skipButtons{
+    position: absolute;
+    bottom: 2%;
+    width : 5%;
+    right: 2.5%;
+    z-index: 1000;
+    cursor: pointer;
+    display : block;
+}
+
+#recT{
+    display : none;
+    pointer-events: none;
+}
+
+
+
+/* Planet Map */
+#screen4 {
+    position: relative;
+}
+
+#startGameImage {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%; 
+    height: auto;
+    transition: opacity 1s ease-out;
+}
+
+.planet-area {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* Animations */
+@keyframes glowBlue {
+    0% {
+        box-shadow: 0 0 5px #0066ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #0066ff;
+    }
+    100% {
+        box-shadow: 0 0 5px #0066ff;
+    }
+}
+
+@keyframes glowGreen {
+    0% {
+        box-shadow: 0 0 5px #00ff00;
+    }
+    50% {
+        box-shadow: 0 0 20px #00ff00;
+    }
+    100% {
+        box-shadow: 0 0 5px #00ff00;
+    }
+}
+
+@keyframes glowRed {
+    0% {
+        box-shadow: 0 0 5px #ff0000;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff0000;
+    }
+    100% {
+        box-shadow: 0 0 5px #ff0000;
+    }
+}
+
+.green-animation {
+    animation: glowGreen 1s infinite;
+}
+
+.red-animation {
+    animation: glowRed 1s infinite;
+}
+
+/* Specific Buttons and Elements */
+#firstPos {
+    position: absolute;
+    height: 12.5%;
+    width: 4%;
+    left: 87.5%;
+    top: 38%;
+}
+
+#secondPos {
+    position: absolute;
+    height: 7%;
+    width: 3%;
+    left: 63%;
+    top: 16%;
+}
+
+#thirdPos {
+    position: absolute;
+    height: 11%;
+    width: 4%;
+    left: 30.5%;
+    top: 58%;
+}
+
+#fourthPos {
+    position: absolute;
+    height: 7.5%;
+    width: 3%;
+    left: 3.5%;
+    top: 37%;
+}
+
+#NironPlanet {
+    position: absolute;
+    border-radius: 50%;
+    height: 33%;
+    width: 20%;
+    left: 17%;
+    top: 62%;
+}
+
+#NironBadge {
+    position: absolute;
+    width: 30%;
+    left: 12.5%;
+    top: 52%;
+}
+
+#CrashPlanet {
+    position: absolute;
+    border-radius: 20%;
+    height: 20%;
+    width: 12%;
+    left: 51%;
+    top: 52%;
+}
+
+#startNironGame {
+    position: absolute;
+    height: 60%;
+    width: 28%;
+    left: 57%;
+    top: 40%;
+}
+
+#touchNiron {
+    position: absolute;
+    left: 63%;
+    top: 30%;
+    display : none;
+}
+
+#blueCardTest {  
+    position: absolute;
+    height: 27%;
+    width: 8.5%;
+    left: 18%;
+    top: 30%;
+}
+
+#gameChoice{
+    position: absolute;
+    left : 30%;
+    top : 50%;
+}
+
+.gameMode{
+    position : absolute;
+    cursor : pointer;
+    left : 55%;
+}
+
+#nonParoleButton{
+    top : 40%;
+}
+
+#voiceRecognitionButton{
+    top : 60%;
+}
+
+/* Audio Buttons */
+#activateMic {
+    position: absolute;
+    border-radius: 50%;
+    height: 7.65%;
+    width: 3.6%;
+    left: 48.2%;
+    top: 88.5%;
+    z-index: 10;
+    animation: glowBlue 1s infinite;
+    background-color: rgba(0, 102, 255, 0.2); 
+    transition: all 0.3s ease;
+}
+
+#sendAudio2 {
+    position: absolute;
+    border-radius: 50%;
+    height: 9%;
+    width: 4.5%;
+    left: 56%;
+    top: 88.35%;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+/* Common Styles for Recognition, Send Result, and Retry Buttons */
+.recognition-button,
+.send-result-button,
+.retry-button,
+.play-button {
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+/* Start Recognition Button */
+.recognition-button {
+    /*border: 2px solid red;*/
+    border-radius: 50%;
+    height: 9%;
+    width: 4.5%;
+    left: 47.13%;
+    top: 87.5%;
+}
+
+/* Send Result Button */
+.send-result-button {
+    top: 87.3%;
+    left: 55.3%;
+    width: 4.5%;
+}
+
+/* Retry Button */
+.retry-button {
+    border-radius: 50%;
+    top: 87%;
+    left: 38.3%;
+    width: 5%;
+    height: 9%;
+}
+
+.play-button{
+    /*border : 2px solid red;*/
+    top: 87.5%;
+    left: 38.7%;
+    width: 4.5%;
+    height: 9%;
+    z-index : 1001;
+}
+
+/* Mask Div */
+#mask,
+#mask1 {
+    position: absolute;
+    border-radius: 18px;
+    height: 13.4%;
+    width: 23.9%;
+    left: 38.6%;
+    top: 85%;
+    z-index: 2;
+    pointer-events: none;
+    display: block;
+}
+
+#CardGame1, #CardGameEx {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 9.5%;
+    top: 15%;
+}
+
+#CardGame1 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 15.5%;
+    top: 15%;
+}
+
+#CardGame2 {  
+    /*border :2px solid red;*/    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 21.5%;
+    top: 15%;
+}
+
+
+#CardGame3 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 27.3%;
+    top: 15.2%;
+}
+
+#CardGame4 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 33.2%;
+    top: 15.2%;
+}
+
+#CardGame5 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 39.1%;
+    top: 15.2%;
+}
+
+#CardGame6 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 45.0%;
+    top: 15.2%;
+}
+
+#CardGame7 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 51.0%;
+    top: 15.2%;
+}
+
+#CardGame8 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 56.8%;
+    top: 15.2%;
+}
+
+#CardGame9 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 62.7%;
+    top: 15.2%;
+}
+
+#CardGame10 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 68.6%;
+    top: 15.2%;
+}
+
+#CardGame11 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 74.5%;
+    top: 15.2%;
+}
+
+#CardGame12 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 80.4%;
+    top: 15.2%;
+    z-index: 1000;
+}
+
+#CardGame13 {  
+    /*border :2px solid red;*/
+    position: absolute;
+    height: 15%;
+    width: 4.5%;
+    left: 86.3%;
+    top: 15.2%;
+    z-index: 1000;
+}
+
+/* Additional Styles */
+.test-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+.test-options-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.test-options-vertical button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+}
+
+/*---------------------------GIOCO NON PAROLE---------------------------------------------------------*/
+#gif-container {
+    position : absolute;
+    width: 100%; /* Adatta la GIF alla larghezza del contenitore */
+    height : 100%;
+  }
+  #my-gif {
+    position: absolute;
+    display: block;
+    width: 100%; /* Adatta la GIF alla larghezza del contenitore */
+    height : 100%;
+  }
+  
+
