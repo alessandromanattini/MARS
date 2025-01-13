@@ -336,6 +336,16 @@ export const cardButtons = [
     document.getElementById('CardGame13')
 ];
 
+export const micNP = [
+    document.getElementById('micNP1'),
+    document.getElementById('micNP2'),
+    document.getElementById('micNP3'),
+    document.getElementById('micNP4'),
+    document.getElementById('micNP5'),
+    document.getElementById('micNP6'),
+    document.getElementById('micNP7')
+];
+
 // Initial visibility settings (unchanged)
 startNironGameButton.style.display = 'none';
 recT.style.display = 'none';
@@ -347,6 +357,12 @@ startRecButtons.forEach(button => {
     button.disabled = true; 
     button.style.display = 'none';
     button.style.cursor = 'default'; 
+});
+
+micNP.forEach(button => {
+    button.disabled = true;
+    button.style.display = 'none';
+    button.style.cursor = 'default';
 });
  
 sendResultButtons.forEach(button => button.style.display = 'none');

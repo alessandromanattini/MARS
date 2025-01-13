@@ -421,6 +421,11 @@ button {
     z-index : 1001;
 }
 
+#micNP1, #micNP2, #micNP3, #micNP4, #micNP5, #micNP6, #micNP7, #micNP8, #micNP9, #micNP10, #micNP11, #micNP12, #micNP13 {
+    left: 47%;
+    top: 87.25%;
+}
+
 /* Mask Div */
 #mask,
 #mask1 {

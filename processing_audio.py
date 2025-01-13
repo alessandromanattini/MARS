@@ -50,4 +50,4 @@ def get_audio_file(id):
         return jsonify({"error": "Internal Server Error"}), 500
 
 if __name__ == "__main__":
-    app.run("localhost", 5501, debug=True)
+    app.run("localhost", 5500, debug=True)

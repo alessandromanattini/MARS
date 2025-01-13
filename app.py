@@ -104,7 +104,7 @@ app = Flask(__name__, static_folder='static')
 # Configurazione di CORS per permettere entrambe le origini
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:5501", "http://127.0.0.1:5501"]
+        "origins": ["http://localhost:5500", "http://127.0.0.1:5500"]
     }
 })
 
@@ -364,4 +364,4 @@ def serve_audio(filename):
 
 
 if __name__ == "__main__":
-    app.run("localhost", 5501, debug=True)
+    app.run("localhost", 5500, debug=True)

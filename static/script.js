@@ -54,7 +54,7 @@ function SetupStream(stream) {
         formData.append("cognome", cognome);
         formData.append("audio", blob, `audio_${file_id}.wav`);
 
-        const url = "http://localhost:5501/";
+        const url = "http://localhost:5500/";
         try {
             const response = await fetch(url, {
                 method: "POST",

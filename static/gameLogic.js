@@ -1,5 +1,5 @@
 import WavEncoder, { encode } from './lib/index.js';
-import { setCurrentScreenNP, setNome, setCognome, setId, zeroAudio, firstAudio, secondAudio, startGameAudioNP, ninthAudio, tenthAudio } from './data.js';
+import { setCurrentScreenNP, setNome, setCognome, setId, zeroAudio, firstAudio, secondAudio, startGameAudioNP, ninthAudio, tenthAudio, phrasesnp, crashPlanetButton } from './data.js';
 import { state, recordState, gameState, exerciseState, updateState, getState } from './state.js';
 
 import {
@@ -273,6 +273,7 @@ export function resetGameState() {
     state.currentScreen = 1;
     state.currentScreenNP = 0;
     gameState.gamePassed = 0;
+    gameState.gamePassedNP = 0;
     gameState.exercises = [];
     exerciseState.retryActivated = false;
     exerciseState.recognitionInProgress = false;
@@ -287,6 +288,8 @@ export function resetGameState() {
     homeButton.style.display = 'none';
     dataButton.style.display = 'none';
     aboutButton.style.display = 'none';
+    crashPlanetButton.style.display = 'none';
+    
 
     nextButtons.forEach(button => button.style.display = 'none');
     backButtons.forEach(button => button.style.display = 'none');
@@ -314,6 +317,12 @@ export function resetGameState() {
     });
 
     phrasesAudioRew.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.load();
+    });
+
+    phrasesnp.forEach(audio => {
         audio.pause();
         audio.currentTime = 0;
         audio.load();
@@ -377,7 +386,7 @@ export async function saveInitialData() {
     formData.append("id", id);
     console.log("ID to Db:", id.toString());
 
-    const url = "http://localhost:5501/user";
+    const url = "http://localhost:5500/user";
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -726,7 +735,7 @@ export async function sendAudioToDB(audioBlob, activity, exercise, task, trasc) 
     
     formData.append('audio', wavBlob, `audio`);
 
-    const url = "http://127.0.0.1:5501/audio";
+    const url = "http://127.0.0.1:5500/audio";
     try {
         const response = await fetch(url, {
             method: 'POST',

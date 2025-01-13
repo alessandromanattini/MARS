@@ -94,6 +94,7 @@ import {
     sixthExerciseAudioNP,
     spellExerciseAudioNP,
     seventhExerciseRewardAudioNP,
+    micNP,
     //intro1
 
   } from './data.js';
@@ -240,6 +241,9 @@ backHomeButtons.forEach(button => {
         pressGreenAudio.pause();
         exampleFinishedAudio.pause();
         startGameAudio.pause();
+        phrasesnp.forEach(audio => {
+            audio.pause();
+        });
 
         // stop reward and exercise audios
         phrasesAudioRew.forEach(audio => {
@@ -995,3 +999,145 @@ endNP.addEventListener('click', function () {
     seventhExerciseRewardAudioNP.pause();
     resetGameState();
 });
+
+export const npIntervals = [
+    [
+        { start: 0, end: 15.3, show: false },
+        { start: 15.3, end: 26,   show: true },
+        { start: 25, end: 43.3,   show: false },
+        { start: 43.3, end: 54.7, show: true },
+        { start: 54.7, end: 56, show: false },
+    ], 
+    [
+        { start: 0, end: 13.7, show: false },
+        { start: 13.7, end: 23.8, show: true },
+        { start: 23.8, end: 38.7,   show: false },
+        { start: 38.7, end: 48.5, show: true },
+        { start: 48.5, end: 50, show: false },
+    ],
+    [
+        { start: 0, end: 15, show: false },
+        { start: 15, end: 26.3, show: true },
+        { start: 26.3, end: 43,   show: false },
+        { start: 43, end: 53.2, show: true },
+        { start: 53.2, end: 55, show: false },
+    ],
+    [
+        { start: 0, end: 15.5, show: false },
+        { start: 15.5, end: 25.5, show: true },
+        { start: 25.5, end: 42,   show: false },
+        { start: 42, end: 51, show: true },
+        { start: 51, end: 55, show: false },
+    ],
+    [
+        { start: 0, end: 15.8, show: false },
+        { start: 15.8, end: 27, show: true },
+        { start: 27, end: 43.5,   show: false },
+        { start: 43.5, end: 54.5, show: true },
+        { start: 54.5, end: 57, show: false },
+    ],
+    [
+        { start: 0, end: 15.5, show: false },
+        { start: 15.5, end: 26.5, show: true },
+        { start: 26.5, end: 43.6,   show: false },
+        { start: 43.6, end: 54.5, show: true },
+        { start: 54.5, end: 57, show: false },
+    ],
+    [
+        {start: 0, end: 60, show: true}
+    ]
+];
+
+
+
+playButtonsNP[0].addEventListener('click', async () => {
+    console.log('Play button NP cliccato per esercizio 1');
+    
+    // Avvia audio
+    phrasesnp[0].play();
+  
+    // Aggiungo listener timeupdate, se non l’hai già aggiunto
+    phrasesnp[0].addEventListener('timeupdate', () => {
+      handleNPTimeUpdate(0, npIntervals[0], phrasesnp, micNP);
+    });
+});
+
+playButtonsNP[1].addEventListener('click', async () => {
+    console.log('Play button NP cliccato per esercizio 2');
+    
+    // Avvia audio
+    phrasesnp[1].play();
+  
+    // Aggiungo listener timeupdate, se non l’hai già aggiunto
+    phrasesnp[1].addEventListener('timeupdate', () => {
+      handleNPTimeUpdate(1, npIntervals[1], phrasesnp, micNP);
+    });
+});
+
+playButtonsNP[2].addEventListener('click', async () => {
+    console.log('Play button NP cliccato per esercizio 3');
+    
+    // Avvia audio
+    phrasesnp[2].play();
+  
+    // Aggiungo listener timeupdate, se non l’hai già aggiunto
+    phrasesnp[2].addEventListener('timeupdate', () => {
+      handleNPTimeUpdate(2, npIntervals[2], phrasesnp, micNP);
+    });
+});
+
+playButtonsNP[3].addEventListener('click', async () => {
+    console.log('Play button NP cliccato per esercizio 4');
+    
+    // Avvia audio
+    phrasesnp[3].play();
+  
+    // Aggiungo listener timeupdate, se non l’hai già aggiunto
+    phrasesnp[3].addEventListener('timeupdate', () => {
+      handleNPTimeUpdate(3, npIntervals[3], phrasesnp, micNP);
+    });
+});
+
+playButtonsNP[4].addEventListener('click', async () => {
+    console.log('Play button NP cliccato per esercizio 5');
+    
+    // Avvia audio
+    phrasesnp[4].play();
+  
+    // Aggiungo listener timeupdate, se non l’hai già aggiunto
+    phrasesnp[4].addEventListener('timeupdate', () => {
+      handleNPTimeUpdate(4, npIntervals[4], phrasesnp, micNP);
+    });
+});
+
+playButtonsNP[5].addEventListener('click', async () => {
+    console.log('Play button NP cliccato per esercizio 6');
+    
+    // Avvia audio
+    phrasesnp[5].play();
+  
+    // Aggiungo listener timeupdate, se non l’hai già aggiunto
+    phrasesnp[5].addEventListener('timeupdate', () => {
+      handleNPTimeUpdate(5, npIntervals[5], phrasesnp, micNP);
+    });
+});
+
+playButtonsNP[6].addEventListener('click', async () => {
+    micNP[6].style.display = 'block';
+});
+
+
+function handleNPTimeUpdate(exerciseIndex, intervals, audioArray, micArray) {
+    const currentTime = audioArray[exerciseIndex].currentTime;
+    // Verifichiamo in quale intervallo di tempo ci troviamo.
+    for (const interval of intervals) {
+      if (currentTime >= interval.start && currentTime < interval.end) {
+        // Se siamo in un intervallo che richiede show=true, mostriamo il bottone
+        // Se show=false, lo nascondiamo
+        micArray[exerciseIndex].style.display = interval.show ? 'block' : 'none';
+        return; 
+      }
+    }
+    // Se il currentTime supera l’ultimo end, decidi cosa fare, per esempio:
+    micArray[exerciseIndex].style.display = 'none';
+  }
