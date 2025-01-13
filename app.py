@@ -261,7 +261,9 @@ def audio():
             ))
 
         print(f"[DEBUG] Nuovo file audio aggiunto per user_id={user_id}, act={act}, ex={ex}, task={task}, trasc={trasc}")
-        save_audio_to_filesystem(user_id, act, ex, task, audio_blob)
+
+        # Salva il file audio sul filesystem
+        # save_audio_to_filesystem(user_id, act, ex, task, audio_blob)
         # Commit delle modifiche
         session.commit()
         return jsonify({"status": "success"}), 200
