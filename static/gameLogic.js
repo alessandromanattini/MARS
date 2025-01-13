@@ -47,6 +47,7 @@ import {
     pressGreenAudio,
     exampleFinishedAudio,
     startGameAudio,
+    storyAudioFilesNP
 } from './data.js';
 
 /* 
@@ -288,7 +289,7 @@ export function resetGameState() {
     homeButton.style.display = 'none';
     dataButton.style.display = 'none';
     aboutButton.style.display = 'none';
-    crashPlanetButton.style.display = 'none';
+    crashPlanetButton.style.display = 'block';
     
 
     nextButtons.forEach(button => button.style.display = 'none');
@@ -323,6 +324,12 @@ export function resetGameState() {
     });
 
     phrasesnp.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.load();
+    });
+
+    storyAudioFilesNP.forEach(audio => {
         audio.pause();
         audio.currentTime = 0;
         audio.load();

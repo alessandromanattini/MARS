@@ -63,6 +63,11 @@ export const eighthAudio = new Audio('../Audio/niron4.mp3');
 export const ninthAudio = new Audio('../Audio/navicella_rotta.mp3');
 export const tenthAudio = new Audio('../Audio/aiutami_ad_aggiustarla.mp3');
 
+export const storyAudioFilesNP = [
+    zeroAudio, firstAudio, secondAudio, thirdAudio, fourthAudio, fifthAudio, sixthAudio,
+    seventhAudio, eighthAudio, ninthAudio, tenthAudio
+];
+
 // Test audio files
 export const readyAudio = new Audio('../Audio/testReady.mp3');
 export const exampleAudio = new Audio('../Audio/new_tutorial.mp3');

@@ -39,7 +39,6 @@ import {
     findMeButton2,
     findMeButton3,
     findMeButton4,
-    crashPlanetButton,
     endGif,
     endNPintro,
     NPtutorial,
@@ -95,6 +94,7 @@ import {
     spellExerciseAudioNP,
     seventhExerciseRewardAudioNP,
     micNP,
+    crashPlanetButton
     //intro1
 
   } from './data.js';
@@ -328,11 +328,14 @@ crashPlanetButton.addEventListener('click', function () {
     firstAudio.pause();
     thirdAudio.pause();
     startGameAudioNP.pause();
+    gif.currentTime = 0; // riporti il cursore video all’inizio
+    gif.play();          // e riparte
     crashPlanetButton.style.display = 'none';
 })
 
 endGif.addEventListener('click', function () {
     ninthAudio.play();
+    gif.currentTime = 0;
 });
 
 endNPintro.addEventListener('click', function () {
@@ -981,6 +984,7 @@ retryButtons.forEach((button, index) => {
     });
   });
   
+
 
 // NP gif ended
 gif.addEventListener('ended', function(){
