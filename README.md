@@ -34,9 +34,6 @@ Per poter utilizzare e testare questa applicazione, hai bisogno di:
 
 #### `index.html`
 - File principale che contiene la struttura del gioco.
-- Include riferimenti a:
-  - `style.css` per la grafica.
-  - `main.js` e altri script per la logica.
 
 #### `style.css`
 - Gestisce lo stile e l'aspetto dell'interfaccia.
@@ -52,13 +49,18 @@ Per poter utilizzare e testare questa applicazione, hai bisogno di:
 - Gestisce gli eventi dell’interfaccia utente, come click e caricamento della pagina.
 
 #### `data.js`
-- Contiene costanti, array di dati (come frasi e riferimenti agli elementi HTML) e configurazioni globali.
+- Contiene costanti, array di dati (come frasi, audio e immagini) e configurazioni globali.
 
 #### `gameLogic.js`
 - Contiene la logica principale del gioco, tra cui:
-  - Cambio schermata.
-  - Gestione dello stato dell'esercizio.
-  - Funzioni per il salvataggio e l’upload dei dati.
+  - **Cambio schermata:** Funzioni per passare tra le varie schermate dell’applicazione (es. menu principale, schermata di gioco, schermata di riepilogo).
+  - **Gestione dello stato dell’esercizio:** 
+    - Inizializzazione di un nuovo esercizio.
+    - Tracciamento del progresso corrente.
+    - Verifica e aggiornamento degli obiettivi raggiunti.
+  - **Salvataggio dei dati:** Funzioni per memorizzare i dati dell'utente nel browser o inviarli al server.
+  - **Caricamento dati:** Funzioni per caricare i dati da fonti locali o server-side.
+  - **Gestione errori:** Logica per gestire situazioni inattese durante il gioco, come dati mancanti o problemi di connessione.
 
 #### `state.js`
 - Gestisce lo stato globale del gioco con funzioni di lettura e aggiornamento.
