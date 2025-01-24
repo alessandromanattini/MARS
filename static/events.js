@@ -94,7 +94,9 @@ import {
     spellExerciseAudioNP,
     seventhExerciseRewardAudioNP,
     micNP,
-    crashPlanetButton
+    crashPlanetButton,
+    playGifButton,
+    storyAudioFilesNP
     //intro1
 
   } from './data.js';
@@ -162,11 +164,16 @@ homeButton.addEventListener('click', function () {
         audio.pause();
         audio.currentTime = 0;
     });
+
+    storyAudioFilesNP.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
     changeScreen('home');
 });
 
 dataButton.addEventListener('click', function (e) {
-    e.stopPropagation(); 
+    /*e.stopPropagation(); 
     if (gameState.exercises.length === 0 && exerciseState.recordedAudios.length === 0 && exerciseState.recordedAudiosNP.length === 0) {
         downloadFile(); 
     } else {
@@ -179,12 +186,12 @@ dataButton.addEventListener('click', function (e) {
             // Scarica lo zip con i dati
             downloadAllAsZipNP(finalData, exerciseState.recordedAudiosNP);
         }
-    }
+    }*/
+   alert("This button will be implemented in the future! We are waiting for further instructions.");
 });
 
 aboutButton.addEventListener('click', function (e) {
-    e.stopPropagation();
-    console.log('About button clicked');
+    alert("This button will be implemented in the future! We are waiting for further instructions.");
 });
 
 // Save user data button
@@ -775,6 +782,12 @@ sendResultButtonsNP.forEach((button, index) => {
         sendResultButtonsNP[index].style.display = 'none';
         console.log(`Updated gamePassedNP: ${gameState.gamePassedNP}`);
 
+        if (gameState.gamePassedNP === 7) {
+            console.log('Tutti i 7 esercizi NP completati! Scarico i file...');
+            const finalData = createFinalDataTextNP(); 
+            await downloadAllAsZipNP(finalData, exerciseState.recordedAudiosNP);
+        }
+
         // Log dello stato prima di cambiare schermo
         console.log(`Before changeScreen: currentScreen = ${state.currentScreen}, currentScreenNP = ${state.currentScreenNP}`);
     });
@@ -988,7 +1001,7 @@ retryButtons.forEach((button, index) => {
 
 // NP gif ended
 gif.addEventListener('ended', function(){
-    gif.style.display = 'none';
+    gif.style.display = 'block';
 });
 
 // Update button visibility on DOMContentLoaded if needed
@@ -1145,3 +1158,9 @@ function handleNPTimeUpdate(exerciseIndex, intervals, audioArray, micArray) {
     // Se il currentTime supera l’ultimo end, decidi cosa fare, per esempio:
     micArray[exerciseIndex].style.display = 'none';
   }
+
+// play gif button
+/*playGifButton.addEventListener('click', function() {
+    gif.currentTime = 0;
+    gif.play();
+});*/

@@ -63,11 +63,6 @@ export const eighthAudio = new Audio('../Audio/niron4.mp3');
 export const ninthAudio = new Audio('../Audio/navicella_rotta.mp3');
 export const tenthAudio = new Audio('../Audio/aiutami_ad_aggiustarla.mp3');
 
-export const storyAudioFilesNP = [
-    zeroAudio, firstAudio, secondAudio, thirdAudio, fourthAudio, fifthAudio, sixthAudio,
-    seventhAudio, eighthAudio, ninthAudio, tenthAudio
-];
-
 // Test audio files
 export const readyAudio = new Audio('../Audio/testReady.mp3');
 export const exampleAudio = new Audio('../Audio/new_tutorial.mp3');
@@ -147,6 +142,11 @@ export const phrasesnp = [firstExerciseAudioNP, secondExerciseAudioNP, thirdExce
     fifthExerciseAudioNP, sixthExerciseAudioNP, seventhExerciseAudioNP
 ];
 
+export const storyAudioFilesNP = [
+    zeroAudio, firstAudio, secondAudio, thirdAudio, fourthAudio, fifthAudio, sixthAudio,
+    seventhAudio, eighthAudio, ninthAudio, tenthAudio, tutorial_np, tutorial_np1, tutorial_npEnd
+];
+
 // DOM elements
 export const gif = document.getElementById('gifMars');
 export const backHomeButtons = document.querySelectorAll('.backHomeButton');
@@ -179,6 +179,8 @@ export const crashPlanetButton = document.getElementById('CrashPlanet');
 export const endGif = document.getElementById('endGif');
 export const endNPintro = document.getElementById('startNPGame');
 export const NPtutorial = document.getElementById('NPTutorial');
+export const playGifButton = document.getElementById('playGifButton');
+
 
 export const playT = document.getElementById('playTutorial');
 export const recT = document.getElementById('recTutorial');
@@ -427,11 +429,6 @@ export function incrementGamePassedNP() {
     gameState.gamePassedNP++;
 }
 
-export function getNome() { return exerciseState.nome; }
-export function setNome(value) { exerciseState.nome = value; return value;}
-
-export function getCognome() { return exerciseState.cognome; }
-export function setCognome(value) { exerciseState.cognome = value; return value;}
 
 export function getId() { return exerciseState.id; }
 export function setId(value) { exerciseState.id = value; return value;}

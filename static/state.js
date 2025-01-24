@@ -14,8 +14,6 @@ export const gameState = {
 export const exerciseState = {
     initialData: '',
     exerciseData: '',
-    nome: '',
-    cognome: '',
     id: '',
     gameID : 1,
     recordedAudios: [],

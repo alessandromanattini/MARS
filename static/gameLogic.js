@@ -1,5 +1,5 @@
 import WavEncoder, { encode } from './lib/index.js';
-import { setCurrentScreenNP, setNome, setCognome, setId, zeroAudio, firstAudio, secondAudio, startGameAudioNP, ninthAudio, tenthAudio, phrasesnp, crashPlanetButton } from './data.js';
+import { setCurrentScreenNP,setId, zeroAudio, firstAudio, secondAudio, startGameAudioNP, ninthAudio, tenthAudio, phrasesnp, crashPlanetButton } from './data.js';
 import { state, recordState, gameState, exerciseState, updateState, getState } from './state.js';
 
 import {
@@ -268,8 +268,6 @@ export function resetFinalScreenButtons(index) {
 export function resetGameState() {
     exerciseState.initialData = '';
     exerciseState.exerciseData = '';
-    exerciseState.nome = '';
-    exerciseState.cognome = '';
     exerciseState.id = '';
     state.currentScreen = 1;
     state.currentScreenNP = 0;
@@ -356,36 +354,21 @@ export function resetGameState() {
 // gameLogic.js
 
 export async function saveInitialData() {
-    const nameInput = document.getElementById('nome');
-    const surnameInput = document.getElementById('cognome');
     const idInput = document.getElementById('id');
-
-    console.log("Input Nome:", nameInput);
-    console.log("Input Cognome:", surnameInput);
     console.log("Input ID:", idInput);
-
-    const name = nameInput ? nameInput.value.trim() : '';
-    const surname = surnameInput ? surnameInput.value.trim() : '';
     const id = idInput ? idInput.value.trim() : '';
-
-    console.log("Valore Nome:", name);
-    console.log("Valore Cognome:", surname);
     console.log("Valore ID:", id);
 
     if (!id) {
-        alert("Errore: Il campo ID è obbligatorio.");
+        alert("Error: ID field mandatory!");
         console.error("ID is undefined or null.");
-        return false; // Indica che il salvataggio non è riuscito
+        return false; 
     }
-    if (!name){
-        alert("Errore: Il campo Nome è obbligatorio.");
-        console.error("Nome is undefined or null.");
-        return false;
-    }
-    if (!surname){
-        alert("Errore: Il campo Cognome è obbligatorio.");
-        console.error("Cognome is undefined o null.");
-        return false;
+
+    if(id < 0){
+        alert("Error : ID should not be negative!");
+        console.error("ID is undefined or null.");
+        return false; 
     }
 
     // Save id to DB
@@ -411,10 +394,8 @@ export async function saveInitialData() {
         return false; // Indica che il salvataggio non è riuscito
     }
 
-    setNome(name);
-    setCognome(surname);
     setId(id);
-    exerciseState.initialData = `Nome: ${name}\nCognome: ${surname}\nID: ${id}\n\n`;
+    exerciseState.initialData = `ID: ${id}\n\n`;
     console.log("Dati salvati:", exerciseState.initialData);
 
     return true; // Indica che il salvataggio è riuscito
@@ -441,7 +422,7 @@ export function saveExerciseData(exerciseNumber, expectedPhrase, spokenPhrase, w
  * Download a text file with all collected data.
  */
 export function downloadFile() {
-    const fileName = `${exerciseState.nome}_${exerciseState.cognome}_${exerciseState.id}.txt`;
+    const fileName = `${exerciseState.id}.txt`;
 
     console.log("Nome del file:", fileName); 
 
@@ -590,16 +571,14 @@ export function createFinalDataText() {
 }
 
 export async function downloadAllAsZip(finalData, recordedAudios) {
-    console.log("Nome:", exerciseState.nome);
-    console.log("Cognome:", exerciseState.cognome);
     console.log("ID:", exerciseState.id);
 
     const zip = new JSZip();
-    const fileName = `${exerciseState.nome}_${exerciseState.cognome}_${exerciseState.id}_risultati.zip`;
+    const fileName = `${exerciseState.id}_risultati.zip`;
     console.log("Nome del file ZIP:", fileName);
 
     // Aggiungi il file testo al file ZIP
-    zip.file(`${exerciseState.nome}_${exerciseState.cognome}_${exerciseState.id}.txt`, finalData);
+    zip.file(`${exerciseState.id}.txt`, finalData);
 
     // Aggiungi i file audio al file ZIP
     for (let audio of recordedAudios) {
@@ -655,15 +634,13 @@ export function createFinalDataTextNP() {
 
 
 export async function downloadAllAsZipNP(finalData, recordedAudiosNP) {
-    console.log("Nome:", exerciseState.nome);
-    console.log("Cognome:", exerciseState.cognome);
     console.log("ID:", exerciseState.id);
     const zip = new JSZip();
-    const fileName = `${exerciseState.nome}_${exerciseState.cognome}_${exerciseState.id}_risultati_NP.zip`;
+    const fileName = `${exerciseState.id}_risultati_NP.zip`;
     console.log("Nome del file ZIP:", fileName);
 
     // Aggiungi il file testo al file ZIP
-    zip.file(`${exerciseState.nome}_${exerciseState.cognome}_${exerciseState.id}.txt`, finalData);
+    zip.file(`${exerciseState.id}.txt`, finalData);
   
     for (let audio of recordedAudiosNP) {
       const wavBlob = await convertWebmToWav(audio.blob);
