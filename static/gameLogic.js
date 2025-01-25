@@ -549,7 +549,7 @@ export async function stopExerciseRecording() {
             const trasc = gameState.exercises.find(ex => ex.exerciseNumber === exerciseNumber)?.spokenPhrase || '';
             //const task = 1;
             //const exercise = gameState.gamePassed;
-            await sendAudioToDB(audioBlob, gameID, exerciseNumber, taskNumber, trasc);
+            //await sendAudioToDB(audioBlob, gameID, exerciseNumber, taskNumber, trasc);
             resolve(audioBlob);
         };
         recordState.mediaRecorder.stop();
@@ -738,4 +738,18 @@ export async function sendAudioToDB(audioBlob, activity, exercise, task, trasc) 
 }
 
 
-
+export async function updateTranscription(exerciseNumber, taskNumber, realTransc) {
+    const userId = exerciseState.id;
+    const formData = new FormData();
+    formData.append('id', userId);
+    formData.append('act', 1);           // ad es. act=1
+    formData.append('ex', exerciseNumber);
+    formData.append('task', taskNumber);
+    formData.append('trasc', realTransc);
+  
+    await fetch("http://127.0.0.1:5500/audioUpdate", {
+      method: 'POST', 
+      body: formData
+    });
+  }
+  

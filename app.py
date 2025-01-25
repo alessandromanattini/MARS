@@ -275,6 +275,34 @@ def audio():
     finally:
         session.close()
 
+@app.route('/audioUpdate', methods=["POST"])
+def audio_update():
+    session = Session()
+    try:
+        user_id = int(request.form.get("id"))
+        act = int(request.form.get("act"))
+        ex = int(request.form.get("ex"))
+        task = int(request.form.get("task"))
+        trasc = request.form.get("trasc", "")
+
+        # Esempio: "UPDATE act_1_exercise SET trasc=? WHERE id_child=? AND id_ex=?"
+        # Oppure aggiorni la tabella Audio_Files
+        # dipende da come hai fatto la logica!
+
+        session.query(Act_1_Exercise).filter(
+            Act_1_Exercise.id_child == user_id,
+            Act_1_Exercise.id_ex == ex
+        ).update({ Act_1_Exercise.trasc: trasc })
+
+        session.commit()
+        return jsonify({"status": "trasc updated"}), 200
+    except Exception as e:
+        session.rollback()
+        print(e)
+        return jsonify({"error": str(e)}), 500
+    finally:
+        session.close()
+
 
 @app.route('/final', methods=["POST"])
 def return_audio_file():

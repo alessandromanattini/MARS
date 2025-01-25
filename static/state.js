@@ -21,6 +21,8 @@ export const exerciseState = {
     recognitionInProgress: false,
     retryActivated: false,
     lastTransc: '',
+    transcriptions : [],
+    sentWithBlank : [],
 };
 
 export const recordState = {

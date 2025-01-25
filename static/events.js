@@ -96,7 +96,8 @@ import {
     micNP,
     crashPlanetButton,
     playGifButton,
-    storyAudioFilesNP
+    storyAudioFilesNP,
+    exercises
     //intro1
 
   } from './data.js';
@@ -117,7 +118,8 @@ import {
     stopExerciseRecordingNP,
     saveExerciseData,
     toggleMenu,
-    sendAudioToDB
+    sendAudioToDB,
+    updateTranscription
   } from './gameLogic.js';
   
   // 3) Import di doRecognition (STT)
@@ -732,6 +734,8 @@ sendResultButtons.forEach((button, index) => {
             });
         }
 
+        const spokenText = exerciseState.transcriptions[index] || "";
+        
         // 3) Nascondo i pulsanti di invio e "startRec" (estetico)
         sendResultButtons[index].style.display = 'none';
         startRecButtons[index].style.display = 'none';
@@ -748,10 +752,20 @@ sendResultButtons.forEach((button, index) => {
         const activity = exerciseState.gameID;
         const exerciseNumber = index + 1;
         const taskNumber = 1;
-        const trasc = exerciseState.lastTransc; 
-        console.log("[DEBUG] Trascrizione inviata al server:", trasc);
+        //const trasc = exerciseState.transcriptions[index] || "";
+        let transcToSend = spokenText;
+        if(!spokenText || spokenText.trim() === ""){
+            console.log(`sto inviando trascrizione vuota per ex ${index+1}`);
+            transcToSend = "";
+            exerciseState.sentWithBlank[index] = true; 
+        } else {
+            exerciseState.sentWithBlank[index] = false; 
+        }
+
+        console.log(`[DEBUG] Trascrizione da inviare al server: "${transcToSend}" (esercizio ${index+1})`);
+        console.log("[DEBUG] Trascrizione inviata al server:", transcToSend);
         if (activity === 1) {
-            await sendAudioToDB(audioBlob, activity, exerciseNumber, taskNumber, trasc);
+            await sendAudioToDB(audioBlob, activity, exerciseNumber, taskNumber, transcToSend);
         } else if (activity === 2) {
             await sendAudioToDB(audioBlob, activity, exerciseNumber, taskNumber, ''); // Passa una stringa vuota per Act=2
         }
@@ -844,23 +858,38 @@ playButtons.forEach((button, index) => {
       phrasesAudio[index].addEventListener('ended', async function onAudioEnded() {
         // Rimuovo l'eventListener per evitare chiamate multiple se l’audio viene riascoltato
         phrasesAudio[index].removeEventListener('ended', onAudioEnded);
-  
+
+        exerciseState.transcriptions[index] = "";
+
         // Mostro il pulsante di startRec come disabilitato (solo grafica)
         startRecButtons[index].style.display = 'block';
         startRecButtons[index].disabled = true;
   
         // Mostro il pulsante di invio: l’utente potrà cliccarlo quando vuole
+        sendResultButtons[index].disabled = true;
         sendResultButtons[index].style.display = 'block';
-  
+
+        
         // Avvia speech recognition (STT)
         doRecognition(cardsPhrases[index], SpeechRecognition, async (recognitionSuccess, spokenPhrase, wrongWords) => {
             const expectedPhrase = cardsPhrases[index];
-            const trasc = spokenPhrase; // Definisci 'trasc' correttamente
+
+            exerciseState.transcriptions[index] = spokenPhrase;
+
+            if(exerciseState.sentWithBlank[index]){
+                if(spokenPhrase && spokenPhrase.trim() !== ""){
+                    console.log("[DEBUG] ora ho la trascrizione corretta, faccio update");
+                    updateTranscription(index+1, 1, spokenPhrase);
+                }
+            }
+
+            //const trasc = spokenPhrase; // Definisci 'trasc' correttamente
             saveExerciseData(index + 1, expectedPhrase, spokenPhrase, wrongWords);
             console.log("STT terminato, pronto per l'invio");  
-            exerciseState.lastTransc = trasc; // Salva 'trasc' nello stato   
+            //exerciseState.lastTransc = spokenPhrase; // Salva 'trasc' nello stato   
             console.log("[DEBUG] Trascrizione STT:", spokenPhrase);
-            console.log("[DEBUG] Stato aggiornato, lastTransc:", exerciseState.lastTransc);  
+            console.log("[DEBUG] Stato aggiornato, lastTransc:", exerciseState.transcriptions[index]);  
+            sendResultButtons[index].disabled = false;
         });
         
 
@@ -869,7 +898,7 @@ playButtons.forEach((button, index) => {
         await startExerciseRecording(index + 1);
       }, { once: true });
     });
-  });
+});
   
 
 // Play buttons for non-words

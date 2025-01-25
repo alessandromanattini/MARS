@@ -41,6 +41,12 @@ export function doRecognition(expectedPhrase, SpeechRecognition, callback) {
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
+    recognition.onstart = () => console.log("Recognition started");
+    recognition.onspeechstart = () => console.log("Speech start");
+    recognition.onspeechend = () => console.log("Speech end");
+    recognition.onend = () => console.log("Recognition ended");
+    recognition.onerror = (e) => console.error("Recognition error:", e)
+
     // Pre-process the expected phrase by removing punctuation and accents
     const testPhrase = removeAccents(removePunctuation(expectedPhrase));
 
