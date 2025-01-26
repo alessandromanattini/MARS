@@ -712,6 +712,16 @@ cardButtons.forEach((button, index) => {
     });
 });
 
+sendResultButtons[13].addEventListener('click', () => {
+    const forceIndex = 13;
+    const expectedPhrase = cardsPhrases[forceIndex];
+    const spokenPhrase = "-";
+    const wrondWords = [];
+
+    saveExerciseData(forceIndex + 1, expectedPhrase, spokenPhrase, wrondWords);
+    
+})
+
 
 phrasesAudio[gameState.gamePassed].addEventListener('ended', function () {
     startRecButtons[gameState.gamePassed].style.display = 'block';
@@ -916,7 +926,6 @@ playButtons.forEach((button, index) => {
         // Avvia speech recognition (STT)
         doRecognition(cardsPhrases[index], SpeechRecognition, async (recognitionSuccess, spokenPhrase, wrongWords) => {
             const expectedPhrase = cardsPhrases[index];
-
             exerciseState.transcriptions[index] = spokenPhrase;
 
             if(exerciseState.sentWithBlank[index]){

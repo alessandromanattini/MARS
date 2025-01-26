@@ -344,7 +344,7 @@ export const cardButtons = [
     document.getElementById('CardGame10'),
     document.getElementById('CardGame11'),
     document.getElementById('CardGame12'),
-    document.getElementById('CardGame13')
+    document.getElementById('CardGame13'),
 ];
 
 export const micNP = [
