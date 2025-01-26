@@ -705,14 +705,14 @@ secondExerciseAudio.addEventListener('ended', function () {
 
 cardButtons.forEach((button, index) => {
     button.addEventListener('click', function () {
-        phrasesAudio[index].play();
+      phrasesAudio[index].play();
         button.style.display = 'none';
         phrasesAudioRew[index].pause();
         changeScreen('next');
     });
 });
 
-sendResultButtons[13].addEventListener('click', () => {
+/*  sendResultButtons[13].addEventListener('click', () => {
     const forceIndex = 13;
     const expectedPhrase = cardsPhrases[forceIndex];
     const spokenPhrase = "-";
@@ -720,7 +720,7 @@ sendResultButtons[13].addEventListener('click', () => {
 
     saveExerciseData(forceIndex + 1, expectedPhrase, spokenPhrase, wrondWords);
     
-})
+})*/
 
 
 phrasesAudio[gameState.gamePassed].addEventListener('ended', function () {
@@ -936,7 +936,7 @@ playButtons.forEach((button, index) => {
             }
 
             //const trasc = spokenPhrase; // Definisci 'trasc' correttamente
-            saveExerciseData(index + 1, expectedPhrase, spokenPhrase, wrongWords);
+            //saveExerciseData(index + 1, expectedPhrase, spokenPhrase, wrongWords);
             console.log("STT terminato, pronto per l'invio");  
             //exerciseState.lastTransc = spokenPhrase; // Salva 'trasc' nello stato   
             console.log("[DEBUG] Trascrizione STT:", spokenPhrase);

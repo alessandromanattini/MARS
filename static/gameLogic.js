@@ -584,7 +584,7 @@ export async function downloadAllAsZip(finalData, recordedAudios) {
     console.log("Nome del file ZIP:", fileName);
 
     // Aggiungi il file testo al file ZIP
-    zip.file(`${exerciseState.id}.txt`, finalData);
+    //zip.file(`${exerciseState.id}.txt`, finalData);
 
     // Aggiungi i file audio al file ZIP
     for (let audio of recordedAudios) {
