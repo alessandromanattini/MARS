@@ -142,6 +142,10 @@ export const phrasesnp = [firstExerciseAudioNP, secondExerciseAudioNP, thirdExce
     fifthExerciseAudioNP, sixthExerciseAudioNP, seventhExerciseAudioNP
 ];
 
+export const phraseNPReward = [firstExerciseRewardAudioNP, secondExerciseRewardAudioNP, thirdExerciseRewardAudioNP,
+    fourthExerciseRewardAudioNP, fifthExerciseRewardAudioNP, sixthExerciseRewardAudioNP, seventhExerciseRewardAudioNP
+];
+
 export const storyAudioFilesNP = [
     zeroAudio, firstAudio, secondAudio, thirdAudio, fourthAudio, fifthAudio, sixthAudio,
     seventhAudio, eighthAudio, ninthAudio, tenthAudio, tutorial_np, tutorial_np1, tutorial_npEnd

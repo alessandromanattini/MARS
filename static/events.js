@@ -22,6 +22,7 @@ import {
     firstExerciseAudio,
     secondExerciseAudio,
     phrasesnp,
+    phraseNPReward,
     // DOM references
     body,
     menu,
@@ -90,6 +91,7 @@ import {
     thirdExerciseRewardAudioNP,
     fourthExerciseRewardAudioNP,
     fifthExerciseRewardAudioNP,
+    sixthExerciseRewardAudioNP,
     sixthExerciseAudioNP,
     spellExerciseAudioNP,
     seventhExerciseRewardAudioNP,
@@ -171,6 +173,18 @@ homeButton.addEventListener('click', function () {
         audio.pause();
         audio.currentTime = 0;
     });
+
+    phrasesnp.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.load();
+    });
+
+    phraseNPReward.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.load();
+    })
     changeScreen('home');
 });
 
@@ -262,6 +276,18 @@ backHomeButtons.forEach(button => {
         phrasesAudio.forEach(audio => {
             audio.pause();
             audio.currentTime = 0;
+        });
+
+        phraseNPReward.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.load();
+        });
+
+        storyAudioFilesNP.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.load();
         });
 
         changeScreen('home'); // Naviga alla schermata iniziale
@@ -573,7 +599,9 @@ playNPT.addEventListener('click', function(){
     tutorial_np.pause();
     tutorial_np1.play();
     tutorial_np1.addEventListener('ended', function () {
-        sendNPT.style.display = 'block';
+        setTimeout(() => {
+            sendNPT.style.display = 'block';     
+    }, 1200);     
     });
 });
 
@@ -784,8 +812,9 @@ sendResultButtons.forEach((button, index) => {
 sendResultButtonsNP.forEach((button, index) => {
     button.addEventListener('click', async () => {
         gameState.gamePassedNP++;
-        console.log(`SendResult clicked for NP exercise ${index + 1}`);
+        console.log(`Updated gamePassedNP: ${gameState.gamePassedNP}`);
         changeScreen('next');
+        console.log(`SendResult clicked for NP exercise ${index + 1}`);
         if (typeof stopExerciseRecordingNP === 'function') {
             const audioBlob = await stopExerciseRecordingNP();
             exerciseState.recordedAudiosNP.push({
@@ -794,14 +823,15 @@ sendResultButtonsNP.forEach((button, index) => {
             });
         }
         sendResultButtonsNP[index].style.display = 'none';
-        console.log(`Updated gamePassedNP: ${gameState.gamePassedNP}`);
-
-        if (gameState.gamePassedNP === 7) {
+        
+        if (gameState.gamePassedNP == 7) {
             console.log('Tutti i 7 esercizi NP completati! Scarico i file...');
             const finalData = createFinalDataTextNP(); 
             await downloadAllAsZipNP(finalData, exerciseState.recordedAudiosNP);
         }
 
+        //phraseNPReward[index].play();
+        
         // Log dello stato prima di cambiare schermo
         console.log(`Before changeScreen: currentScreen = ${state.currentScreen}, currentScreenNP = ${state.currentScreenNP}`);
     });
@@ -809,35 +839,48 @@ sendResultButtonsNP.forEach((button, index) => {
 
 sendNP1.addEventListener('click', function () {
     firstExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 sendNP2.addEventListener('click', function () {
     secondExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 sendNP3.addEventListener('click', function () {
     thirdExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 sendNP4.addEventListener('click', function () {
     fourthExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 sendNP5.addEventListener('click', function () {
     fifthExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 sendNP6.addEventListener('click', function () {
     sixthExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 lastNP.addEventListener('click', function () {
     sixthExerciseAudioNP.pause();
     spellExerciseAudioNP.play();
+    //gameState.gamePassedNP++;
 });
 
 sendNP7.addEventListener('click', function () {
     seventhExerciseRewardAudioNP.play();
+    //gameState.gamePassedNP++;
+
+    if(gameState.gamePassedNP == 7){
+        const finalData = createFinalDataTextNP(); 
+        downloadAllAsZipNP(finalData, exerciseState.recordedAudiosNP);
+    }
 });
 
 // Play buttons for recognition exercises
@@ -1073,14 +1116,14 @@ export const npIntervals = [
         { start: 15.5, end: 25.5, show: true },
         { start: 25.5, end: 42,   show: false },
         { start: 42, end: 51, show: true },
-        { start: 51, end: 55, show: false },
+        { start: 51, end: 53, show: false },
     ],
     [
         { start: 0, end: 15.8, show: false },
         { start: 15.8, end: 27, show: true },
         { start: 27, end: 43.5,   show: false },
         { start: 43.5, end: 54.5, show: true },
-        { start: 54.5, end: 57, show: false },
+        { start: 54.5, end: 55, show: false },
     ],
     [
         { start: 0, end: 15.5, show: false },

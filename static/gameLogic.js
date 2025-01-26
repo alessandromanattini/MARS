@@ -1,5 +1,5 @@
 import WavEncoder, { encode } from './lib/index.js';
-import { setCurrentScreenNP,setId, zeroAudio, firstAudio, secondAudio, startGameAudioNP, ninthAudio, tenthAudio, phrasesnp, crashPlanetButton } from './data.js';
+import { setCurrentScreenNP,setId, zeroAudio, firstAudio, secondAudio, startGameAudioNP, ninthAudio, tenthAudio, phrasesnp, phraseNPReward, crashPlanetButton } from './data.js';
 import { state, recordState, gameState, exerciseState, updateState, getState } from './state.js';
 
 import {
@@ -326,6 +326,12 @@ export function resetGameState() {
         audio.currentTime = 0;
         audio.load();
     });
+
+    phraseNPReward.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.load();
+    })
 
     storyAudioFilesNP.forEach(audio => {
         audio.pause();
@@ -742,7 +748,7 @@ export async function updateTranscription(exerciseNumber, taskNumber, realTransc
     const userId = exerciseState.id;
     const formData = new FormData();
     formData.append('id', userId);
-    formData.append('act', 1);           // ad es. act=1
+    formData.append('act', 1);      
     formData.append('ex', exerciseNumber);
     formData.append('task', taskNumber);
     formData.append('trasc', realTransc);
