@@ -1,4 +1,3 @@
-# Mars_AUI
-"Mars" project for the AUI course
+# Mars
 
-Try it here : [http://127.0.0.1:5500/Mars/index.html]
+Link to the report : [https://drive.google.com/drive/folders/1_brhqwix9eZhTtPuMCXjrQ0LFFAf9Xa5?usp=share_link]
