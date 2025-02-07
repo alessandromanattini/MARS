@@ -71,6 +71,7 @@ Planned enhancements include:
 - Integration of an **AI-powered model** for analyzing recorded speech data.
 - Enhancements to the speech-to-text system for greater accuracy.
 - Improved UI/UX for a more intuitive and engaging experience.
+- Adaptable Interface (NOTE : at the moment the dimensions are fixed!)
 
 ---
 
